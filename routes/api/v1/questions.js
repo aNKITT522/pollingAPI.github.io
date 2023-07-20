@@ -6,6 +6,7 @@ const question_controller=require('../../../controlller/questControl');
 qRouter.post('/create',question_controller.create);
 qRouter.get('/view/:id',question_controller.showDetails);
 qRouter.delete('/delete/:id',question_controller.deleteQues);
+qRouter.delete('/forceDelete/:id',question_controller.forceDeleteQues);
 const option = require('./options');
 qRouter.use('/options',option);
 

@@ -13,8 +13,7 @@ module.exports.create=async function(req,res){
     console.log("opy.id is -->"+opt.id);
     // it is for adding the vote to option of the id that is given by mongodb by update query and using the string interpolition
     const updateOpt=await Option.findByIdAndUpdate(opt.id,{"add_vote":`http://localhost:8000/api/v1/options/${opt.id}/add_vote`});
-    // await updateOpt.save();
-    // now searching the question so that we can append the option in question-->option array
+    
 
     try {
     const ques=await Question.findById(req.params.id);

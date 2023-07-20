@@ -46,25 +46,6 @@ module.exports.showDetails=async function(req,res){
     // in this the details about the question is displayed
 }
 
-// module.exports.deleteQues=async function(req,res){
-//     // in this the question will be deleted
-//         const ques= await Question.findById(req.params.id).catch(function(err){ console.log(err)})
-//         if(ques){
-
-//             // delete all the option ⁉️ of the option db having the question id as the req.params.id
-//             await Question.deleteOne({ _id: req.params.id }).catch(function(err){ console.log(err)})
-//             // deleting all the option of that question
-//             await Option.deleteMany({question:req.params.id}).catch(function(err){ console.log(err)})
-//                 res.send("ques deleted");
-    
-//         }
-//         //  if th at question of the given id does not exists then just sending a message
-//         else{
-//             res.send('question does not exists')
-//         }
-        
-// }
-
 module.exports.deleteQues = async function (req, res) {
     try {
       // Find the question with the given id
@@ -93,4 +74,24 @@ module.exports.deleteQues = async function (req, res) {
       res.status(500).send('An error occurred while deleting the question');
     }
   };
+
+
+  module.exports.forceDeleteQues=async function(req,res){
+        // in this the question will be deleted
+            const ques= await Question.findById(req.params.id).catch(function(err){ console.log(err)})
+            if(ques){
+    
+                // delete all the option ⁉️ of the option db having the question id as the req.params.id
+                await Question.deleteOne({ _id: req.params.id }).catch(function(err){ console.log(err)})
+                // deleting all the option of that question
+                await Option.deleteMany({question:req.params.id}).catch(function(err){ console.log(err)})
+                    res.send("question deleted");
+        
+            }
+            //  if th at question of the given id does not exists then just sending a message
+            else{
+                res.send('question does not exists')
+            }
+            
+    }
   
